@@ -1,0 +1,11 @@
+{
+	"authors": [
+		"Herringway"
+	],
+	"description": "earthbound beginnings port",
+	"license": "public domain",
+	"name": "earthbound_beginnings",
+	"dependencies": {
+		"librehome:nes": "*"
+	}
+}
