@@ -6,6 +6,6 @@
 	"license": "public domain",
 	"name": "earthbound_beginnings",
 	"dependencies": {
-		"librehome:nes": "*"
+		"replatform64:nes": "*"
 	}
 }

@@ -18,3 +18,5 @@ dub.selections.json
 *.dll
 settings.yaml
 dump/
+.vs
+*.planet

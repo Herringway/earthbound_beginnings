@@ -6,7 +6,10 @@ import std.conv;
 import std.functional;
 import std.getopt : defaultGetoptPrinter, getopt;
 import std.logger;
+import std.meta;
 import std.typecons;
+
+alias loadableDataModules = AliasSeq!();
 
 void handleNullableOption(alias var)(string, string value) {
 	var = value.to!(typeof(var.get));
@@ -34,7 +37,7 @@ int main(string[] args) {
 		(cast()sharedLog).logLevel = LogLevel.trace;
 	}
 	nes.entryPoint = &reset;
-	//nes.interruptHandler = &irqNMICommon;
+	nes.interruptHandlerVBlank = &unknownF79F;
 	nes.title = "Earthbound Beginnings";
 	//nes.matchingInternalID = "EARTH BOUND          ";
 	//nes.gameID = "earthbound";
@@ -44,11 +47,10 @@ int main(string[] args) {
 	auto config = nes.loadSettings!GameConfig();
 	nes.initialize();
 	//nes.initializeAudio(&spc, &audioCallback);
-	if (forceAssetExtraction || !nes.assetsExist) {
-		nes.extractAssets(&extractAssets);
-	}
+	//nes.handleAssets!loadableDataModules(&extractExtraData, &loadExtraData);
 	//loadROMData(nes.assets);
 	//uncomment when we have something to save
 	//scope(exit) nes.saveSettings(config);
-	return nes.run();
+	nes.run();
+	return 0;
 }
